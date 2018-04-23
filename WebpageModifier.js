@@ -6,24 +6,13 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.2
+// @version     1.3
 // @grant       none
 
 // ==/UserScript==
 
-var CONTEXT_CLASS   = "contextArea";
-
-var HIGHLIGHT_CLASS = "highlight";
-addCss('.'+HIGHLIGHT_CLASS+'{\
-    background: rgba(52, 152, 219,0.8) ! important; \
-    border: none ! important; \
-    color: #fff ! important; \
-    -webkit-transition: linear 0.1s ! important; \
-    -o-transition: linear 0.1s ! important; \
-    transition: linear 0.1s ! important; \
-}');
-
-addCss("."+HIGHLIGHT_CLASS+" a{color:#fff!important ;outline:none}");
+// Web location
+// https://raw.githubusercontent.com/jed1337/WebpageModifier/master/WebpageModifier.js
 
 function addCss(css) {
     var head, style;
@@ -72,6 +61,7 @@ function bindJK(selContext, selHighlight, selFocus){
 }
 
 /**
+* :param: selContext Where to find selHighlight and selFocus
 * :param: selHighlight which item to highlight in the context
 * :param: selFocus which item to bring focus to
 */
