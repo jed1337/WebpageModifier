@@ -6,7 +6,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.1
+// @version     1.2
 // @grant       none
 
 // ==/UserScript==
@@ -118,4 +118,29 @@ function highLight(letter, selContext, selHighlight, selFocus) {
 
 function validPath(href){
     return window.location.href.indexOf(href)>0;
+}
+
+function getText(selector){
+    return $(selector).text().trim();
+}
+
+function getTextValueFromHTML(selector){
+    return $(selector).html().trim().replace(/\s*(<br>|<p>)\s*/g,'\n');
+}
+
+function copy(text){
+    var $temp = $("<textarea>");
+    $("body").append($temp);
+
+    // Get the text and replace all <br> and <p> with new lines
+    // var text = $(selector).html().trim().replace(/\s*(<br>|<p>)\s*/g,'\n');
+
+    // Put the selector's text in it and highlight it
+    $temp.val(text).select();
+
+    // Copy the highlighted text
+    document.execCommand("copy");
+
+    // Remove it from the body
+    $temp.remove();
 }
