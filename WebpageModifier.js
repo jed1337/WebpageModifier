@@ -111,3 +111,8 @@ function highLight(letter, selContext, selHighlight, selFocus) {
     currentContext.addClass(CONTEXT_CLASS).find(selFocus).focus();
     currentContext.find(selHighlight).addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
 }
+
+
+function validPath(href){
+    return window.location.href.indexOf(href)>0;
+}
