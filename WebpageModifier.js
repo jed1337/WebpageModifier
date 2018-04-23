@@ -6,6 +6,9 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
+// @version     1.1
+// @grant       none
+
 // ==/UserScript==
 
 var CONTEXT_CLASS   = "contextArea";

@@ -7,6 +7,7 @@ An API to help in the modification of webpages.
 * Custom keyboard shortcuts
 * Append J and K shortcuts to certain areas
 * Modifiable highlight style used in conjunction with J and K
+* Copy text
 
 ## Dependencies
 ### Tools used:
