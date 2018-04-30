@@ -6,7 +6,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.3
+// @version     1.4
 // @grant       none
 
 // ==/UserScript==
@@ -27,10 +27,10 @@ function addCss(css) {
 function checkSelector(selector, findPath=''){
     var sel = $(selector);
 
-    if(findPath.length){
+    if(exists(findPath)){
         sel = sel.find(findPath);
     }
-    if(sel.length===0){             //0 selector length
+    if(exists(sel)){             //0 selector length
         alert("$('"+selector+"') doesn't work anymore!");
     }
     return sel;
@@ -42,7 +42,7 @@ function click(selector, findPath="", index=0){
 
 function clickInContext(findPath){
     //If there's no highlited item, pass it on to click to click the first matching item in general
-    if($("."+CONTEXT_CLASS).length === 0){
+    if(exists($("."+CONTEXT_CLASS))){
         click(findPath);
     }
     // Else, find the findPath from the highlighted, then click the one inside
@@ -77,6 +77,11 @@ function highLight(letter, selContext, selHighlight, selFocus) {
     var nextIndex;
 
     context.eq(index).find(selHighlight).removeClass(HIGHLIGHT_CLASS);
+
+    if(selfHighlight===""){
+        context.eq(index).removeClass(HIGHLIGHT_CLASS);
+    }
+
     context.eq(index).removeClass(CONTEXT_CLASS);
 
     // alert("before, index="+index+" nextIndex="+nextIndex);
@@ -103,6 +108,10 @@ function highLight(letter, selContext, selHighlight, selFocus) {
     var currentContext = context.eq(index);
     currentContext.addClass(CONTEXT_CLASS).find(selFocus).focus();
     currentContext.find(selHighlight).addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
+
+    if(selfHighlight===""){
+        currentContext.addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
+    }
 }
 
 
@@ -116,6 +125,10 @@ function getText(selector){
 
 function getTextValueFromHTML(selector){
     return $(selector).html().trim().replace(/\s*(<br>|<p>)\s*/g,'\n');
+}
+
+function exists(object){
+    return object.length>0
 }
 
 function copy(text){

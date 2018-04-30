@@ -9,6 +9,7 @@ Append this to your user script:
 
 ## Features
 * Custom keyboard shortcuts
+* Check if elements exist
 * Append J and K shortcuts to certain areas
 * Modifiable highlight style used in conjunction with J and K
 * Copy text
