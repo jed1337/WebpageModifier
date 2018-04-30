@@ -30,7 +30,7 @@ function checkSelector(selector, findPath=''){
     if(exists(findPath)){
         sel = sel.find(findPath);
     }
-    if(exists(sel)){             //0 selector length
+    if(!exists(sel)){             //0 selector length
         alert("$('"+selector+"') doesn't work anymore!");
     }
     return sel;
@@ -42,7 +42,7 @@ function click(selector, findPath="", index=0){
 
 function clickInContext(findPath){
     //If there's no highlited item, pass it on to click to click the first matching item in general
-    if(exists($("."+CONTEXT_CLASS))){
+    if(!exists($("."+CONTEXT_CLASS))){
         click(findPath);
     }
     // Else, find the findPath from the highlighted, then click the one inside
