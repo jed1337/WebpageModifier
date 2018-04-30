@@ -78,7 +78,7 @@ function highLight(letter, selContext, selHighlight, selFocus) {
 
     context.eq(index).find(selHighlight).removeClass(HIGHLIGHT_CLASS);
 
-    if(selfHighlight===""){
+    if(selHighlight===""){
         context.eq(index).removeClass(HIGHLIGHT_CLASS);
     }
 
@@ -109,7 +109,7 @@ function highLight(letter, selContext, selHighlight, selFocus) {
     currentContext.addClass(CONTEXT_CLASS).find(selFocus).focus();
     currentContext.find(selHighlight).addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
 
-    if(selfHighlight===""){
+    if(selHighlight===""){
         currentContext.addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
     }
 }
@@ -127,8 +127,8 @@ function getTextValueFromHTML(selector){
     return $(selector).html().trim().replace(/\s*(<br>|<p>)\s*/g,'\n');
 }
 
-function exists(object){
-    return object.length>0
+function exists(obj){
+    return obj.length>0
 }
 
 function copy(text){
