@@ -12,7 +12,10 @@
 // ==/UserScript==
 
 // Web location
-// https://raw.githubusercontent.com/jed1337/WebpageModifier/master/WebpageModifier.js
+// Master
+	// https://raw.githubusercontent.com/jed1337/WebpageModifier/master/WebpageModifier.js
+// jed_branch
+	// https://raw.githubusercontent.com/jed1337/WebpageModifier/jed_branch/WebpageModifier.js
 
 function addCss(css) {
 	var head, style;
@@ -33,12 +36,6 @@ function click(selector, {findPath='', index=0}={}) {
 	checkSelector(selector, findPath)[index].click();
 	afterClick();
 }
-
-// function click(selector, findPath="", index=0){
-//     beforeClick();
-//     checkSelector(selector, findPath)[index].click();
-//     afterClick();
-// }
 
 function checkSelector(selector, findPath=''){
 	var sel = $(selector);
