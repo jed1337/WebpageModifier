@@ -6,7 +6,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.4
+// @version     1.5
 // @grant       none
 
 // ==/UserScript==
@@ -37,8 +37,15 @@ function checkSelector(selector, findPath=''){
 }
 
 function click(selector, findPath="", index=0){
+    beforeClick();
     checkSelector(selector, findPath)[index].click();
+    afterClick();
 }
+
+// These functions do nothing.
+// They can be overriden by the subclass for added flexibility
+    function beforeClick(){}
+    function aftereClick(){}
 
 function clickInContext(findPath){
     //If there's no highlited item, pass it on to click to click the first matching item in general
