@@ -24,6 +24,12 @@ function addCss(css) {
     head.appendChild(style);
 }
 
+function click(selector, findPath="", index=0){
+    beforeClick();
+    checkSelector(selector, findPath)[index].click();
+    afterClick();
+}
+
 function checkSelector(selector, findPath=''){
     var sel = $(selector);
 
@@ -36,16 +42,10 @@ function checkSelector(selector, findPath=''){
     return sel;
 }
 
-function click(selector, findPath="", index=0){
-    beforeClick();
-    checkSelector(selector, findPath)[index].click();
-    afterClick();
-}
-
 // These functions do nothing.
 // They can be overriden by the subclass for added flexibility
     function beforeClick(){}
-    function aftereClick(){}
+    function afterClick(){}
 
 function clickInContext(findPath){
     //If there's no highlited item, pass it on to click to click the first matching item in general
@@ -58,6 +58,10 @@ function clickInContext(findPath){
         click("."+CONTEXT_CLASS, findPath)
         // hl.find(findPath)[0].click();
     }
+}
+
+function exists(obj){
+    return obj.length>0
 }
 
 function bindJK(selContext, selHighlight, selFocus){
@@ -132,10 +136,6 @@ function getText(selector){
 
 function getTextValueFromHTML(selector){
     return $(selector).html().trim().replace(/\s*(<br>|<p>)\s*/g,'\n');
-}
-
-function exists(obj){
-    return obj.length>0
 }
 
 function copy(text){
