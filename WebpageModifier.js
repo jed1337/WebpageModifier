@@ -6,7 +6,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.5
+// @version     1.6.1
 // @grant       none
 
 // ==/UserScript==
@@ -61,9 +61,7 @@ function clickInContext(findPath){
 	}
 	// Else, find the findPath from the highlighted, then click the one inside
 	else{
-		// click("."+CONTEXT_CLASS, findPath)
-		click("."+CONTEXT_CLASS, findPath)
-		// hl.find(findPath)[0].click();
+		click("."+CONTEXT_CLASS, {findPath: findPath});
 	}
 }
 
