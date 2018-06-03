@@ -6,7 +6,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.6.1
+// @version     1.7
 // @grant       none
 
 // ==/UserScript==
@@ -82,54 +82,60 @@ function bindJK(selContext, selHighlight, selFocus){
 * :param: selFocus which item to bring focus to
 */
 function highLight(letter, selContext, selHighlight, selFocus) {
-	checkSelector(selContext);
-	checkSelector(selHighlight);
-	checkSelector(selFocus);
+   checkSelector(selContext);
+   checkSelector(selHighlight);
+   checkSelector(selFocus);
 
-	var context = $(selContext);
-	var index   = context.index($("."+CONTEXT_CLASS));
+   var context = $(selContext);
+   var index   = context.index($("."+CONTEXT_CLASS));
 
-	//So that we can see more of the results. Explained more below (when .focus() is used)
-	var nextIndex;
+   context.eq(index).find(selHighlight).removeClass(HIGHLIGHT_CLASS);
 
-	context.eq(index).find(selHighlight).removeClass(HIGHLIGHT_CLASS);
+   if(!exists(selHighlight)){
+      context.eq(index).removeClass(HIGHLIGHT_CLASS);
+   }
 
-	if(selHighlight===""){
-		context.eq(index).removeClass(HIGHLIGHT_CLASS);
-	}
+   context.eq(index).removeClass(CONTEXT_CLASS);
 
-	context.eq(index).removeClass(CONTEXT_CLASS);
+   // Loop this part if selContext.CONTEXT_CLASS has another selContext as a child
+   do{
+      //So that we can see more of the results. Explained more below (when .focus() is used)
+      var nextIndex;
 
-	// alert("before, index="+index+" nextIndex="+nextIndex);
-	var old = index;
-	if ( letter === 'k' ) {
-		if(index >= 0){
-			index--;
-		}
-		nextIndex = index-1;
-	} else if ( letter === 'j' ) {
-		index++;
-		if(index === context.length){
-			index = 0;
-		}
-		nextIndex = index+1;
-	}
-	// alert("after, index="+index+" nextIndex="+nextIndex);
+      if ( letter === 'k' ) { // Go up
+         if(index >= 0){
+            index--;
+         }
+         nextIndex = index-1; //Jquery's .eq() allows for negative indexes. .eq(-1) gets the last element
+      }
+      else if ( letter === 'j' ) { //Go down
+         index++;
+         if(index === context.length){ // If it reaches the end, index = 0
+            index = 0;
+         }
+         nextIndex = index+1;
+      }
+      // alert("Index: "+index);
+      // if(exists(context.eq(index).find(selContext))){
+         // alert("has selContext child")
+      // }
+   }while(exists(context.eq(index).find(selContext)));
 
-	//So that we can see more of context.eq(index)
-	//If we go down, it'll move 2 places down (nextIndex), go back to the original spot, then go down 1 place (index)
-	context.eq(nextIndex).find(selFocus).focus();
 
-	//We just put it in a currentContext so we don't keep referencing context.eq(...)
-	var currentContext = context.eq(index);
-	currentContext.addClass(CONTEXT_CLASS).find(selFocus).focus();
-	currentContext.find(selHighlight).addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
+   //So that we can see more of context.eq(index)
+   //If we go down, it'll move 2 places down (nextIndex), go back to the original spot, then go down 1 place (index)
+   //Conversely, if we go up, it'll move up 2 places, go back to the original spot, then go up 1 place
+   context.eq(nextIndex).find(selFocus).focus();
 
-	if(selHighlight===""){
-		currentContext.addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
-	}
+   //We just put it in a currentContext so we don't keep referencing context.eq(...)
+   var currentContext = context.eq(index);
+   currentContext.addClass(CONTEXT_CLASS).find(selFocus).focus();
+   currentContext.find(selHighlight).addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
+
+   if(!exists(selHighlight)){
+      currentContext.addClass(HIGHLIGHT_CLASS).find(selFocus).focus();
+   }
 }
-
 
 function validPath(href){
 	return window.location.href.indexOf(href)>0;
