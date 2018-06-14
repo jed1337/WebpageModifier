@@ -50,7 +50,7 @@ function setMutationObserver(observedNode, observedMutations){
 }
 
 // Template method
-	rebindKeyboardShortcuts(){}
+	function rebindKeyboardShortcuts(){}
 
 /**
 * Usage:
