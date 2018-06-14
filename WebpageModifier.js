@@ -1,5 +1,4 @@
-// ==UserScript==
-// @name        Google Shortcuts
+// @name        Webpage Modifier
 // @author      Jed Caychingco
 // @include     *
 
@@ -7,9 +6,6 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
 // @version     1.7
-// @grant       none
-
-// ==/UserScript==
 
 // Web location
 // Master
@@ -26,6 +22,24 @@ function addCss(css) {
 	style.innerHTML = css;
 	head.appendChild(style);
 }
+
+var callback = function(mutationsList) {
+   for(let mutation of mutationsList) {
+      console.log("There's a mutation of type: "+mutation.type);
+      console.log(mutation);
+      rebindKeyboardShortcuts();
+   }
+};
+
+function setMutationObserver(observedNode, observedMutations, {callbackFunc=callback}={}){
+	var observer = new MutationObserver(callbackFunc);
+	observer.observe(observedNode, observedMutations);
+
+	rebindKeyboardShortcuts();
+}
+
+// Template method
+	function rebindKeyboardShortcuts(){}
 
 /**
 * Usage:

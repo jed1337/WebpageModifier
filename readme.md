@@ -4,8 +4,12 @@
 An API to help in the modification of webpages.
 
 ## User Script Usage
-Append this to your user script:
-`// @require     https://raw.githubusercontent.com/jed1337/WebpageModifier/master/WebpageModifier.js`
+Append the following code to your user script. The first `@require` is the actual Webpage Modifier script, while the succeeding ones pertain to the [Mousetrap](https://craig.is/killing/mice) script.
+```
+// @require     https://raw.githubusercontent.com/jed1337/WebpageModifier/master/WebpageModifier.js
+// @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
+// @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
+```
 
 ## Features
 * Click elements
