@@ -27,6 +27,28 @@ function addCss(css) {
 	head.appendChild(style);
 }
 
+var callback = function(mutationsList) {
+   for(let mutation of mutationsList) {
+      console.log("There's a mutation of type: "+mutation.type);
+      console.log(mutation);
+      rebindKeyboardShortcuts();
+   }
+};
+
+function setMutationObserver(observedNode, observedMutations, {callbackFunc=callback}={}){
+	alert("observedNode      = "+ observedNode);
+	alert("observedMutations = "+ observedMutations);
+	alert("callbackFunc      = "+ callbackFunc);
+
+	var observer = new MutationObserver(callbackFunc);
+	observer.observe(observedNode, observedMutations);
+
+	rebindKeyboardShortcuts();
+}
+
+// Template method
+	rebindKeyboardShortcuts(){}
+
 /**
 * Usage:
 * click(selector,{findPath:'a>div#id', index:1})
