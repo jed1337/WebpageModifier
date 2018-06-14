@@ -1,5 +1,4 @@
-// ==UserScript==
-// @name        Google Shortcuts
+// @name        Webpage Modifier
 // @author      Jed Caychingco
 // @include     *
 
@@ -7,9 +6,6 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
 // @version     1.7
-// @grant       none
-
-// ==/UserScript==
 
 // Web location
 // Master
