@@ -32,13 +32,6 @@ var callback = function(mutationsList) {
 };
 
 function setMutationObserver(observedNode, observedMutations, {callbackFunc=callback}={}){
-// function setMutationObserver(observedNode, observedMutations){
-	alert("observedNode      = "+ observedNode);
-	alert("observedMutations = "+ observedMutations);
-//
-	// var callbackFunc = callback;
-	alert("callbackFunc      = "+ callbackFunc);
-
 	var observer = new MutationObserver(callbackFunc);
 	observer.observe(observedNode, observedMutations);
 
