@@ -5,7 +5,7 @@
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/mousetrap.js
 // @require     https://raw.githubusercontent.com/ccampbell/mousetrap/master/plugins/bind-dictionary/mousetrap-bind-dictionary.js
 
-// @version     1.7
+// @version     1.9
 
 // Web location
 // Master
@@ -129,10 +129,6 @@ function highLight(letter, selContext, selHighlight, selFocus) {
          }
          nextIndex = index+1;
       }
-      // alert("Index: "+index);
-      // if(exists(context.eq(index).find(selContext))){
-         // alert("has selContext child")
-      // }
    }while(exists(context.eq(index).find(selContext)));
 
 
@@ -153,6 +149,10 @@ function highLight(letter, selContext, selHighlight, selFocus) {
 
 function validPath(href){
 	return window.location.href.indexOf(href)>0;
+}
+
+function samePathAs(href){
+	return window.location.href===href
 }
 
 function getText(selector){
